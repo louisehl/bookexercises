@@ -54,7 +54,6 @@ class Group {
     for (let x of value){
       newgroup.add(x);
     }
-    console.log(newgroup);
     return newgroup;
   }
 }
@@ -67,3 +66,40 @@ console.log(group.has(30));
 group.add(10);
 group.delete(10);
 console.log(group.has(10));
+
+// 6.3
+
+class GroupIterator{
+  constructor(group){
+    this.state = 0;
+    this.group = group;
+  }
+  
+  next(){
+    if (this.state >= this.group.array.length) return {done: true};
+    this.state++;
+    return {value: this.group.array[this.state - 1], done: false};
+  }
+}
+
+for (let value of Group.from(["a", "b", "c"])) {
+  console.log(value);
+}
+// → a
+// → b
+// → c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
