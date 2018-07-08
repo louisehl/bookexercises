@@ -67,6 +67,8 @@ group.add(10);
 group.delete(10);
 console.log(group.has(10));
 
+
+
 // 6.3
 
 class GroupIterator{
@@ -88,6 +90,16 @@ for (let value of Group.from(["a", "b", "c"])) {
 // → a
 // → b
 // → c
+
+
+
+// 6.4
+
+let map = {one: true, two: true, hasOwnProperty: true};
+
+// See page 103 for reference
+console.log(Object.prototype.hasOwnProperty.call(map, "one"));
+// → true
 
 
 
