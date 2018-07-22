@@ -72,3 +72,38 @@ function compareRobots(robot1, memory1, robot2, memory2) {
 
 compareRobots(yourRobot, [], goalOrientedRobot, []);
 
+
+// 7.3
+
+class PGroup {
+  constructor(v) {
+    this.array = v;
+  }
+
+  add(v) {
+    if (!this.has(v)) return new PGroup(this.array.concat([v]));
+    return this;
+  }
+  
+  delete(v) {
+    return new PGroup(this.array.filter(x => x != v));
+  }
+  
+  has(v) {
+    return this.array.includes(v);
+  }
+}
+// Why do you need only one PGroup.empty value, rather
+// than having a function that creates a new, empty map every time?
+PGroup.empty = new PGroup([]);
+
+let a = PGroup.empty.add("a");
+let ab = a.add("b");
+let b = ab.delete("a");
+
+console.log(b.has("b"));
+// → true
+console.log(a.has("b"));
+// → false
+console.log(b.has("a"));
+// → false
