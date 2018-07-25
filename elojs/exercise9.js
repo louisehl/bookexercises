@@ -51,3 +51,11 @@ function verify(regexp, yes, no) {
     console.log(`Unexpected match for '${str}'`);
   }
 }
+
+//9.2
+
+let text = "'I'm the cook,' he said, 'it's my job.'";
+
+//virker dog ikke hvis der ikke er komma, eller lignende lige inden...
+console.log(text.replace(/(^|\W)'|($|\W)'/g,'$1"$2'));
+// → "I'm the cook," he said, "it's my job."
