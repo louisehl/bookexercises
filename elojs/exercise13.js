@@ -47,3 +47,36 @@
   }
   document.getElementById("mountains").appendChild(table);
 </script>
+
+
+//13.2
+
+<!doctype html>
+
+<h1>Heading with a <span>span</span> element.</h1>
+<p>A paragraph with <span>one</span>, <span>two</span>
+  spans.</p>
+
+<script>
+  function byTagName(node, tagName) {
+    let arr = [];
+    for (let i = 0; i < node.childNodes.length; i++) {
+      if (node.childNodes[i].nodeName == tagName.toUpperCase()) {
+        arr.push(node.childNodes[i].nodeName);
+      }
+      let next = byTagName(node.childNodes[i], tagName);
+      if (next.length > 0) {
+      	arr = arr.concat(next);
+      }
+    }
+    return arr;
+  }
+
+  console.log(byTagName(document.body, "h1").length);
+  // → 1
+  console.log(byTagName(document.body, "span").length);
+  // → 3
+  let para = document.querySelector("p");
+  console.log(byTagName(para, "span").length);
+  // → 2
+</script>
