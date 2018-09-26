@@ -32,3 +32,33 @@
 
   window.addEventListener("keydown", arrow);
 </script>
+
+
+//15.2
+
+<!doctype html>
+
+<style>
+  .trail { /* className for the trail elements */
+    position: absolute;
+    height: 6px; width: 6px;
+    border-radius: 3px;
+    background: teal;
+  }
+  body {
+    height: 300px;
+  }
+</style>
+
+<script>
+  window.addEventListener("mousemove", event => {
+    let trail = document.createElement("div");
+    trail.className = "trail";
+    trail.style.left = (event.clientX + 5) + "px";
+    trail.style.top = (event.clientY + 5) + "px";
+    document.body.appendChild(trail);
+    setTimeout(() => {
+      document.body.removeChild(trail);
+    }, 500);
+  });
+</script>
