@@ -1,0 +1,37 @@
+//17.1
+
+<!doctype html>
+
+<canvas width="600" height="200"></canvas>
+<script>
+  
+  //terrible setup
+  let cx = document.querySelector("canvas").getContext("2d");
+    cx.beginPath();
+    cx.moveTo(50,50);
+    cx.lineTo(90, 50);
+    cx.lineTo(110, 90);
+    cx.lineTo(30, 90);
+    cx.lineTo(50, 50);
+  	cx.closePath();
+    cx.stroke();
+    
+    cx.rotate(Math.PI / 4);
+    cx.fillStyle = "red";
+    cx.fillRect(150, 50, 40, 40);
+    cx.resetTransform(-Math.PI / 4);
+    
+    cx.beginPath();
+  	cx.moveTo(150, 50);
+  	let left = true;
+  	for (let i = 5; i <= 55; i += 5) {
+    	if (left) {
+          left = false;
+          cx.lineTo(150 + 40, 50 + i); 
+        } else {
+          left = true;
+          cx.lineTo(150, 50 + i);
+        }
+    }
+  	cx.stroke();
+</script>
