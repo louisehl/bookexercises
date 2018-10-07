@@ -12,6 +12,8 @@
     <option value="4">4444</option>
 </select>
 
+<input type="file" id="fil">
+
 <script>
     let text = document.querySelector("input");
     let length = document.querySelector("#length");
@@ -25,5 +27,19 @@
         checkbox.checked ? "mediumpurple" : "white";
     });
 
-    
+    let file = document.querySelector("#fil");
+    file.addEventListener("change", () => {
+        if (file.files.length > 0) {
+            let f = file.files[0];
+            console.log("Name of file: ", f.name);
+            if (f.type) console.log("Type of file: ", f.type);
+            let reader = new FileReader();
+            reader.addEventListener("load", () => {
+                console.log("File", file.name, "starts with",
+                reader.result.slice(0, 30) + "...");
+            });
+            reader.readAsText(f);
+        }
+    });
+
 </script>
