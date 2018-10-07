@@ -1,0 +1,29 @@
+<!doctype html>
+<input type="text"> length: <span id="length"> 0 </span>
+<label>
+    <input type="checkbox" id="purplebackground"> 
+    Change background to purple
+</label>
+
+<select multiple>
+    <option value="1">1111</option>
+    <option value="2">2222</option>
+    <option value="3">3333</option>
+    <option value="4">4444</option>
+</select>
+
+<script>
+    let text = document.querySelector("input");
+    let length = document.querySelector("#length");
+    text.addEventListener("input", () => {
+        length.textContent = text.value.length;
+    });
+
+    let checkbox = document.querySelector("#purplebackground");
+    checkbox.addEventListener("change", () => {
+        document.body.style.background = 
+        checkbox.checked ? "mediumpurple" : "white";
+    });
+
+    
+</script>
