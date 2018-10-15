@@ -5,4 +5,6 @@ Exercises from various books, courses etc.
 * Eloquent Javascript. Book link: https://eloquentjavascript.net/Eloquent_JavaScript.pdf
 * Coursera: Algorithms Part 1, Princeton University
 
+### Done:
+* FreeCodeCamp: Finished the Javascript Algorithms certificate.
 
