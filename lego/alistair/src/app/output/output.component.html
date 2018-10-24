@@ -1,0 +1,17 @@
+<form>
+  <label>Quantity
+  <input name="Quantity" placeholder="quantity" [(ngModel)]="quantity">
+  </label><br>
+  <label>Price
+    <input name="Price" placeholder="Price" [(ngModel)]="price">
+  </label><br>
+  <label>Statename
+    <input name="statecode" placeholder="State name" [(ngModel)]="statecode">
+  </label><br>
+  <button (click)="OV()">Find Price</button>
+</form><br><br>
+
+Order Value is: {{ov}}<br>
+Tax Amount is: {{stateprice}}<br><br>
+
+Total price is: {{result}}
