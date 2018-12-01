@@ -40,6 +40,7 @@ import { LoginComponent } from './login/login.component';
 import { MatSliderModule } from '@angular/material';
 
 import { baseURL } from './shared/baseUrl';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { baseURL } from './shared/baseUrl';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective
   ],
   imports: [
     AppRoutingModule,
