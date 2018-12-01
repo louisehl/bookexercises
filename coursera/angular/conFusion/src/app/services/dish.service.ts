@@ -5,26 +5,31 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { baseURL } from '../shared/baseUrl';
 import { Http } from '@angular/http';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import { ProcessHTTPMsgService } from './process-httpmsg.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DishService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private httpMsgService: ProcessHTTPMsgService) { }
 
   getDishes(): Observable<Dish[]> {
-    return this.http.get<Dish[]>(baseURL + 'dishes');
+    return this.http.get<Dish[]>(baseURL + 'dishes')
+                    .pipe(catchError(this.httpMsgService.handleError));
   }
 
   getDish(id: string): Observable<Dish> {
-    return this.http.get<Dish>(baseURL + 'dishes/' + id);
+    return this.http.get<Dish>(baseURL + 'dishes/' + id)
+                    .pipe(catchError(this.httpMsgService.handleError));
   }
 
   getFeaturedDish(): Observable<Dish> {
     return this.http.get<Dish>(baseURL + 'dishes?featured=true')
             .pipe(map(dishes => dishes[0]))
+            .pipe(catchError(this.httpMsgService.handleError));
   }
 
   getDishIds(): Observable<string[] | any> {

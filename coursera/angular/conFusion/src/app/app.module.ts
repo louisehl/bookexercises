@@ -31,7 +31,7 @@ import { ContactComponent } from './contact/contact.component';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
-
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import 'hammerjs';
 import { DishDetailComponent } from './dish-detail/dish-detail.component';
 
@@ -80,6 +80,7 @@ import { baseURL } from './shared/baseUrl';
     DishService,
     PromotionService,
     LeaderService,
+    ProcessHTTPMsgService,
     { provide: 'BaseURL', useValue: baseURL }
   ],
   bootstrap: [AppComponent],
