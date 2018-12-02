@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Feedback, ContactType } from '../shared/feedback';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { flyInOut } from '../animations/app.animations';
+import { flyInOut, expand } from '../animations/app.animations';
+import { FeedbackService } from '../services/feedback.service';
 
 @Component({
   selector: 'app-contact',
@@ -12,14 +13,18 @@ import { flyInOut } from '../animations/app.animations';
     'style': 'display: block;'
   },
   animations: [
-    flyInOut()
+    flyInOut(),
+    expand()
   ]
 })
 export class ContactComponent implements OnInit {
 
   feedbackForm: FormGroup;
   feedback: Feedback;
+  feedbackCopy: Feedback;
   contactType = ContactType;
+  errMsg: string;
+  submitted: boolean = false;
 
   @ViewChild('fform') feedbackFormDirective;
 
@@ -51,7 +56,7 @@ export class ContactComponent implements OnInit {
     }
   };
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private feedbackService: FeedbackService) { 
     this.createForm();
   }
 
@@ -97,8 +102,19 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-    this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
+    this.submitted = true;
+    this.feedbackCopy = this.feedbackForm.value;
+    this.feedbackService.submitFeedback(this.feedbackCopy)
+      .subscribe(feedback => {
+        this.feedback = feedback;
+        setTimeout(() => this.resetFeedback(), 8000);
+      }, errMsg => this.errMsg = <any>errMsg);
+  }
+
+  resetFeedback() {
+    this.feedback = null;
+    this.feedbackCopy = null;
+    this.submitted = false;
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
