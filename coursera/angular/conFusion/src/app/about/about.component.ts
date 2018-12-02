@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { LeaderService } from '../services/leader.service';
 import { Leader } from '../shared/leader';
 import { flyInOut, expand } from '../animations/app.animations';
+import { ProcessHTTPMsgService } from '../services/process-httpmsg.service';
 
 @Component({
   selector: 'app-about',
@@ -19,11 +20,13 @@ import { flyInOut, expand } from '../animations/app.animations';
 export class AboutComponent implements OnInit {
 
   leaders: Leader[];
-  constructor(private leaderService: LeaderService) { }
+  errMsg: string;
+  constructor(private leaderService: LeaderService, 
+              @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
     this.leaderService.getLeaders()
-      .subscribe((leaders) => this.leaders = leaders);
+      .subscribe((leaders) => this.leaders = leaders, errMsg => this.errMsg = <any>errMsg);
   }
 
 }
